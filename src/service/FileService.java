@@ -1,20 +1,15 @@
 //Работа с файлами (чтение и запись файлов)
 package service;
-
-import com.sun.tools.javac.Main;
-import core.CaesarCoder;
-import core.Cipher;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileService {
     public static List<Character> arr = new ArrayList<>();
 
 //  Чтение файла и вывод текста
-    public static void readFromFile(String pathToFile) throws IOException {
+    public static String readFromFile(String pathToFile) throws IOException {
+        StringBuilder result = new StringBuilder();
         try {
             ValidationService.validationFile(pathToFile);
         } catch (FileNotFoundException e) {
@@ -26,9 +21,11 @@ public class FileService {
             int i;
             while ((i = reader.read()) != -1) {
                 arr.add((char)i);
-                System.out.print((char)i);
+                result.append((char)i);
             }
         }
+
+        return result.toString();
     }
 
 //    Запись текста в файл
@@ -37,7 +34,6 @@ public class FileService {
         try (FileOutputStream writes = new FileOutputStream(file)) {
             byte[] bytes = result.getBytes("UTF-8");
             writes.write(bytes);
-            writes.write(CaesarCoder.key);
             System.out.println("Данные успешно записаны!");
         } catch (IOException e) {
             e.printStackTrace();
