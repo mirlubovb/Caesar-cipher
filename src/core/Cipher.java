@@ -14,16 +14,24 @@ public class Cipher {
 //    Шифрование текста
     public static String cipherOnKey(int key) {
         StringBuilder result = new StringBuilder();
+        boolean found;
         int lengthCipher = getCipher().length;
         for (int i = 0; i < FileService.arr.size(); i++) {
+            found = false;
             char currentChar = FileService.arr.get(i);
             char lowerChar = Character.toLowerCase(currentChar);
 
-            for (int j = 0; j < lengthCipher; j++)
+            for (int j = 0; j < lengthCipher; j++) {
                 if (lowerChar == getCipher()[j]) {
                     int index = (j + key) % lengthCipher;
                     result.append(getCipher()[index]);
+                    found = true;
                 }
+            }
+
+            if (!found) {
+                result.append(currentChar);
+            }
         }
         return result.toString();
     }

@@ -9,6 +9,7 @@ public class FileService {
 
 //  Чтение файла и вывод текста
     public static String readFromFile(String pathToFile) throws IOException {
+        arr.clear();
         StringBuilder result = new StringBuilder();
         try {
             ValidationService.validationFile(pathToFile);

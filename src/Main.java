@@ -27,8 +27,9 @@ public class Main {
             String cipher;
             String decipher;
 
+            textFromFile = FileService.readFromFile(path);
+
             if (number == 1) {
-                textFromFile = FileService.readFromFile(path);
                 System.out.println("Текст из файла: " + textFromFile);
             } else if (number == 2) {
                 cipher = Cipher.cipherOnKey(key);
