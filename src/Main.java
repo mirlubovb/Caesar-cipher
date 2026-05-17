@@ -26,7 +26,6 @@ public class Main {
             String textFromFile;
             String cipher;
             String decipher;
-
             textFromFile = FileService.readFromFile(path);
 
             if (number == 1) {
